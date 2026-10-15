@@ -10,9 +10,9 @@ const messageInput = form.elements.message;
 
 const savedValue = localStorage.getItem('feedback-form-state');
 if (savedValue) {
-  const state = JSON.parse(savedValue);
-  formState.email = state.email || '';
-  formState.message = state.message || '';
+  const stateFeedback = JSON.parse(savedValue);
+  formState.email = stateFeedback.email || '';
+  formState.message = stateFeedback.message || '';
 
   emailInput.value = formState.email;
   messageInput.value = formState.message;
