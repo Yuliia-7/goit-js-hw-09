@@ -1,4 +1,4 @@
-let formState = {
+let formData = {
   email: '',
   message: '',
 };
@@ -11,18 +11,18 @@ const messageInput = form.elements.message;
 const savedValue = localStorage.getItem('feedback-form-state');
 if (savedValue) {
   const stateFeedback = JSON.parse(savedValue);
-  formState.email = stateFeedback.email || '';
-  formState.message = stateFeedback.message || '';
+  formData.email = stateFeedback.email || '';
+  formData.message = stateFeedback.message || '';
 
-  emailInput.value = formState.email;
-  messageInput.value = formState.message;
+  emailInput.value = formData.email;
+  messageInput.value = formData.message;
 }
 
 form.addEventListener('input', () => {
-  formState.email = emailInput.value.trim();
-  formState.message = messageInput.value.trim();
+  formData.email = emailInput.value.trim();
+  formData.message = messageInput.value.trim();
 
-  localStorage.setItem('feedback-form-state', JSON.stringify(formState));
+  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 });
 
 form.addEventListener('submit', e => {
@@ -34,12 +34,12 @@ form.addEventListener('submit', e => {
   if (isInvalidInput) {
     alert('Fill please all fields');
   } else {
-    console.log(formState);
+    console.log(formData);
 
     localStorage.removeItem('feedback-form-state');
 
     form.reset();
 
-    formState = { email: '', message: '' };
+    formData = { email: '', message: '' };
   }
 });
